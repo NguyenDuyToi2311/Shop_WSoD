@@ -55,7 +55,7 @@
                 <img src="{{bw.product_image.url}}" class="card-image-top" alt="Categories" height="200px">
                 <span class="fw-bold">{{bw.title}}</span>
                 <br>
-                <span class="fs-5">Rs.{{bw.discounted_price}}$</span>
+                <span class="fs-5">Rs.{{bw.final_price}}$</span>
             </div>
         </a>
         {% endfor %}
@@ -109,7 +109,7 @@
                 <img src="{{tw.product_image.url}}" class="card-image-top" alt="Categories" height="200px">
                 <span class="fw-bold">{{tw.title}}</span>
                 <br>
-                <span class="fs-5">Rs.{{tw.discounted_price}}$</span>
+                <span class="fs-5">Rs.{{tw.final_price}}$</span>
             </div>
         </a>
         {% endfor %}
@@ -126,7 +126,7 @@
                 <img src="{{sh.product_image.url}}" class="card-image-top" alt="Categories" height="200px">
                 <spanclass="fw-bold">{{sh.title}}</span>
                 <br>
-                <span class="fs-5">Rs.{{sh.selling_price}}</span>
+                <span class="fs-5">Rs.{{sh.final_price}}</span>
             </div>   
         </a>    
         {% endfor %}        

@@ -19,6 +19,9 @@ STATE_CHOICES = (
     ('Assam', 'Assam'),
     ('Bihar', 'Bihar'),
     ('Daman and Hiu', 'Daman and Hiu'),
+    ('Hồ Chí Minh, Việt Nam', 'Hồ Chí Minh, Việt Nam'),
+    ('Bình Dương, Việt Nam','Bình Dương, Việt Nam'),
+    ('Hà Nội, Việt Nam', 'Hà Nội, Việt Nam')
 )
 
 class Customer(models.Model):
@@ -64,6 +67,9 @@ class Cart(models.Model):
 
     def __str__(self):
         return str(self.id)
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.final_price
 
 STATUS_CHOICES = (
     ('Accepted', 'Accepted'),
@@ -79,5 +85,10 @@ class OderPlaced(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField(default=1)
     ordered_date = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length = 50, choices=STATE_CHOICES,default='Pending')
+    status = models.CharField(max_length = 50, choices=STATUS_CHOICES, default='Pending')
+    
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.final_price
+    
     

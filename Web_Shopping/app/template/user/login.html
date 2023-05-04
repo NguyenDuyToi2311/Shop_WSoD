@@ -1,27 +1,76 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 {% load static %}
 {% block title %}Login{% endblock title %}
+
 {% block main-content %}
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary nav-m">
+	<div class="container menu">
+		<a class="navbar-brand" href="/">WSoD</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 clearfix">
+				<li class="nav-item active">
+					<a class="nav-link active" aria-current="page" href="/">Home</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle text-white" href="#" id="electronicsDropdown" role="button"
+						data-bs-toggle="dropdown" aria-expanded="false">Electronics</a>
+					<ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
+						<li>
+							<a class="dropdown-item" href="{% url 'mobile' %}">Mobile</a>
+						</li>
+						<li><a class="dropdown-item" href="#">Laptop</a></li>
+					</ul>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle text-white" href="#" id="fashionDropdown" role="button"
+						data-bs-toggle="dropdown" aria-expanded="false">Fashion</a>
+					<ul class="dropdown-menu" aria-labelledby="fashionDropdown">
+						<li><a class="dropdown-item" href="#">Top Wear</a></li>
+						<li><a class="dropdown-item" href="#">Bottom Wear</a></li>
+					</ul>
+				</li>
+			</ul>	
+				<button class="btn btn-warning" type="submit">S</button>
+		</div>
+	</div>
+</nav>
 <div class="container">
-    <div class="row my-3">
-        <div class="col-sm-6 offset-sm-3">
-            <h3>Login</h3>
+    <div class="row-cols-8 my-5">
+        <div class="col-sm-6 offset-sm-3 border rounded-2">
+            <div class="col-12 border-bottom border-5">
+				<div class="text-center">
+					<h1>Login</h1>
+				</div>
+			</div>
             <hr>
-            <form action="" method="post" novalidate class="shadow p-5">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <small><a href="#">Forgot Password ?</a></small> <br>
+            <form action="" method="post" novalidate class="shadow-sm p-5">
+                {% csrf_token %}
+                {% for fm in form %}
+                    <div class="form-group">
+                        {{fm.label_tag}}{{fm}}
+					    <small class="text-danger">{{fm.errors|striptags}}</small>
+                    </div>
+                {% endfor %}
+                <small><a href="{% url 'password_reset' %}">Forgot Password ?</a></small> <br>
                 <input type="submit" class="btn btn-primary mt-4" value="Login">
                 <br>
-                <div class="text-center text-primary fw-bold"><small>New to ShoppinglyX ? <a
-                            href="{% url 'customerregistration' %}" class="text-danger">Create an Account</a> </small>
+                <div class="text-center text-primary fw-bold">
+                    <small>Sign up for free - 
+                        <a href="{% url 'customerregistration' %}" class="text-danger">
+                            Create an Account
+                        </a> 
+                    </small>
                 </div>
+                {% if form.non_field_errors %} 
+                    {% for error in form.non_field_errors %}
+				        <p class="alert alert-danger my-3">{{error}}</p>
+				    {% endfor %} 
+                {% endif %}
             </form>
         </div>
     </div>

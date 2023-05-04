@@ -19,3 +19,65 @@
  font-size: 24px;
  font-weight: bold;
 }
+
+
+
+
+.wrapper {
+    width: 980px;
+    margin: 0 auto;
+}
+.wrapper-nav{
+ background: #fff;
+}
+     
+.wrapper-nav.fixed {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 7000;
+    box-shadow: 0 0 5px 2px #ccc;
+}
+ 
+.wrapper-nav.fixed .nav-main {
+    width: 980px;
+    margin: 0 auto;
+}
+ 
+.nav-main {
+    height: 36px;
+}
+ 
+.nav-main>ul {
+    position: relative;
+    width: 100%;
+    max-width: 980px;
+    padding: 0px;
+    margin: 0px;
+}
+.nav-main>ul>li {
+    list-style: none;
+    float: left;
+    padding: 12px 0 10px;
+    border-bottom: solid 1px #ccc;
+}
+.nav-main>ul>li>a {
+    color: #333;
+    font-weight: 700;
+    float: left;
+    font-size: 14px;
+    padding: 1px 3.6px;
+    border-left: solid 1px #ccc;
+}
+/* Đổi kích thước của khung thông báo */
+.alert {
+    width: 300px;
+    height: auto;
+    font-size: 10;
+    vertical-align: auto;
+}
+
+
+
+
